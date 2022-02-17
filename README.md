@@ -5,7 +5,7 @@ The tests cover the most common operations such as loading and saving a geopacka
 Note that all operations were performed in the Cartesian coordinate system excluding [s2](https://github.com/r-spatial/s2) package, where calculations were performed on the sphere (this affects the longer calculation times).
 For more information, see the [Spherical geometry in sf using s2geometry](https://r-spatial.github.io/sf/articles/sf7.html) article and [presentation](https://www.youtube.com/watch?v=zqRhF2XM1CE) at the FOSS4G 2021 conference.
 
-The detailed results are available at XXX.
+The detailed results are available at https://kadyb.github.io/vector-benchmark/report.html.
 
 For high-performance data frames processing in R, check [data.table](https://grantmcdermott.com/fast-geospatial-datatable-geos/) and [collapse](https://sebkrantz.github.io/collapse/articles/collapse_and_sf.html).
 

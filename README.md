@@ -1,6 +1,6 @@
 # Vector processing benchmarks
 This repository contains a collection of vector processing benchmarks for Python and R packages.
-The tests cover the most common operations such as XXX.
+The tests cover the most common operations such as loading and saving a geopackage file, sampling points in a polygon, creating buffers, transformating the coordinate system (CRS), calculating the distance between points, and intersecting geometries.
 
 Note that all operations were performed in the Cartesian coordinate system excluding [s2](https://github.com/r-spatial/s2) package, where calculations were performed on the sphere (this affects the longer calculation times).
 For more information, see the [Spherical geometry in sf using s2geometry](https://r-spatial.github.io/sf/articles/sf7.html) article and [presentation](https://www.youtube.com/watch?v=zqRhF2XM1CE) at the FOSS4G 2021 conference.
@@ -22,7 +22,7 @@ You may also be interested in the [raster processing benchmarks](https://github.
 - [geos](https://github.com/paleolimbot/geos)
 
 ## Reproduction
-1. XXX.
+1. Generate the data from `data/` folder in R.
 2. Run all benchmarks using batch script (`run_benchmarks.sh`) or single benchmarks files.
 
 **Batch script**
@@ -39,6 +39,9 @@ Rscript sf/buffer.R
 ```
 python3 geopandas/buffer.py
 ```
+
+## Dataset
+The dataset is synthetically generated and consists of 300,000 points in a planar coordinate system.
 
 ## Hardware configuration
 - CPU: Intel Xeon CPU E5-2620 v2 @ 2.10GHz

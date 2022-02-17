@@ -6,7 +6,7 @@ import pandas as pd
 wd = os.getcwd()
 vec = os.path.join(wd, "data", "points.gpkg")
 gdf = geopandas.read_file(vec)
-gdf = gdf[0:5000]
+gdf = gdf[0:4000]
 
 t_list = [None] * 10
 for i in range(10):

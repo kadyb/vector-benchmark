@@ -1,7 +1,7 @@
 library(sf)
 
 vec = read_sf("data/points.gpkg")
-vec = vec[1:5000, ]
+vec = vec[1:4000, ]
 
 t_vec = numeric(10)
 for (i in seq_len(10)) {

@@ -1,0 +1,199 @@
+---
+title: "Vector Benchmark"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r message=FALSE}
+library(ggplot2)
+```
+
+```{r collapse=TRUE}
+cat(paste("R", getRversion(), "\n"))
+cat(paste("sf", packageVersion("sf"), "\n"))
+cat(paste("terra", packageVersion("terra"), "\n"))
+cat(paste("s2", packageVersion("s2"), "\n"))
+cat(paste("geos", packageVersion("geos")))
+```
+
+```{r collapse=TRUE}
+# check it manually
+cat("Python 3.8.10", "\n")
+cat("geopandas 0.9.0", "\n")
+```
+
+```{r}
+files = list.files("results", full.names = TRUE)
+df = lapply(files, read.csv2)
+df = do.call(rbind, lapply(files, read.csv2,
+                           colClasses = c("factor", "factor", "numeric")))
+```
+
+## Sampling points
+#### 100 000 points
+
+```{r sample}
+df_agg = df[df$task == "sample", ]
+df_agg = merge(aggregate(time ~ package, df_agg, median),
+               aggregate(time ~ package, df_agg, sd), by = "package")
+colnames(df_agg)[2:3] = c("median", "sd")
+
+ggplot(df_agg, aes(x = reorder(package, -median), y = median)) + 
+  geom_col(width = 0.3) +
+  geom_errorbar(aes(ymin = median, ymax = median + sd),
+                color = "red", width = 0.3) +
+  ylab("Time [s]") +
+  xlab("Package") +
+  coord_flip() +
+  theme_light()
+```
+
+## Transform CRS
+
+```{r transform}
+df_agg = df[df$task == "transform", ]
+df_agg = merge(aggregate(time ~ package, df_agg, median),
+               aggregate(time ~ package, df_agg, sd), by = "package")
+colnames(df_agg)[2:3] = c("median", "sd")
+
+ggplot(df_agg, aes(x = reorder(package, -median), y = median)) + 
+  geom_col(width = 0.3) +
+  geom_errorbar(aes(ymin = median, ymax = median + sd),
+                color = "red", width = 0.3) +
+  ylab("Time [s]") +
+  xlab("Package") +
+  coord_flip() +
+  theme_light()
+```
+
+## Geometries intersects
+
+```{r intersects}
+df_agg = df[df$task == "intersects", ]
+df_agg = merge(aggregate(time ~ package, df_agg, median),
+               aggregate(time ~ package, df_agg, sd), by = "package")
+colnames(df_agg)[2:3] = c("median", "sd")
+
+ggplot(df_agg, aes(x = reorder(package, -median), y = median)) + 
+  geom_col(width = 0.4) +
+  geom_errorbar(aes(ymin = median, ymax = median + sd),
+                color = "red", width = 0.4) +
+  ylab("Time [s]") +
+  xlab("Package") +
+  coord_flip() +
+  theme_light()
+```
+
+## Load geopackage
+
+```{r load}
+df_agg = df[df$task == "load", ]
+df_agg = merge(aggregate(time ~ package, df_agg, median),
+               aggregate(time ~ package, df_agg, sd), by = "package")
+colnames(df_agg)[2:3] = c("median", "sd")
+
+ggplot(df_agg, aes(x = reorder(package, -median), y = median)) + 
+  geom_col(width = 0.3) +
+  geom_errorbar(aes(ymin = median, ymax = median + sd),
+                color = "red", width = 0.3) +
+  ylab("Time [s]") +
+  xlab("Package") +
+  coord_flip() +
+  theme_light()
+```
+
+## Write geopackage
+
+```{r write}
+df_agg = df[df$task == "write", ]
+df_agg = merge(aggregate(time ~ package, df_agg, median),
+               aggregate(time ~ package, df_agg, sd), by = "package")
+colnames(df_agg)[2:3] = c("median", "sd")
+
+ggplot(df_agg, aes(x = reorder(package, -median), y = median)) + 
+  geom_col(width = 0.3) +
+  geom_errorbar(aes(ymin = median, ymax = median + sd),
+                color = "red", width = 0.3) +
+  ylab("Time [s]") +
+  xlab("Package") +
+  coord_flip() +
+  theme_light()
+```
+
+## Creating buffers
+
+```{r buffer}
+df_agg = df[df$task == "buffer", ]
+df_agg = merge(aggregate(time ~ package, df_agg, median),
+               aggregate(time ~ package, df_agg, sd), by = "package")
+colnames(df_agg)[2:3] = c("median", "sd")
+
+ggplot(df_agg, aes(x = reorder(package, -median), y = median)) + 
+  geom_col(width = 0.3) +
+  geom_errorbar(aes(ymin = median, ymax = median + sd),
+                color = "red", width = 0.3) +
+  ylab("Time [s]") +
+  xlab("Package") +
+  coord_flip() +
+  theme_light()
+```
+
+## Distance
+#### 4000 points
+
+```{r distance}
+df_agg = df[df$task == "distance", ]
+df_agg = merge(aggregate(time ~ package, df_agg, median),
+               aggregate(time ~ package, df_agg, sd), by = "package")
+colnames(df_agg)[2:3] = c("median", "sd")
+
+ggplot(df_agg, aes(x = reorder(package, -median), y = median)) + 
+  geom_col(width = 0.3) +
+  geom_errorbar(aes(ymin = median, ymax = median + sd),
+                color = "red", width = 0.3) +
+  ylab("Time [s]") +
+  xlab("Package") +
+  coord_flip() +
+  theme_light()
+```
+
+
+```{r final-plot, eval=FALSE}
+df_agg = aggregate(time ~ task + package, df, median)
+python = c("geopandas")
+df_agg$lang = ifelse(df_agg$package %in% python, "Python", "R")
+df_agg$lang = as.factor(df_agg$lang)
+
+xlabels = c("Buffer", "Distance", "Intersects", "Load",
+            "Sample", "Transform", "Write")
+ggplot(df_agg, aes(x = task, y = time)) +
+  geom_point(aes(shape = lang, color = package), size = 2, alpha = 0.8,
+             position = position_jitter(width = 0.2, seed = 1)) +
+  # override circles with squares in legend
+  guides(colour = guide_legend(override.aes = list(shape = 15))) +
+  labs(title = "Benchmark vector operations",
+       caption = "https://github.com/kadyb/vector-benchmark",
+       color = "Package", shape = "Language") +
+  scale_x_discrete(labels = xlabels) +
+  scale_color_brewer(palette = "Set1") +
+  ylab("Time [s]") +
+  xlab("Task") +
+  theme_light() +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.caption.position = "plot")
+```
+
+```{r}
+timings = aggregate(time ~ task + package, df, median)
+colnames(timings)[3] = "median"
+timings$median = round(timings$median, 2)
+write.csv(timings, "timings.csv", row.names = FALSE, quote = FALSE)
+```

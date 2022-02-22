@@ -20,9 +20,9 @@ def sample(polygon, size):
         )
         hits = pts[pts.sindex.query(polygon.geometry.iloc[0], predicate="contains")]
         count += len(hits)
-        points.append(hits)
+        points.extend(hits)
 
-    gdf = geopandas.GeoDataFrame(geometry=pd.concat(points)[:size], crs=polygon.crs)
+    gdf = geopandas.GeoDataFrame(geometry=points[:size], crs=polygon.crs)
     return gdf
 
 n = 100000

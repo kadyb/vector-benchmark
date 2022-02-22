@@ -14,6 +14,13 @@ for i in range(10):
 
     dist = gdf.geometry.apply(lambda f: gdf.distance(f))
 
+    # this can get a tiny bit faster using pygeos directly (3.57s vs 3.96s)
+    # import pygeos
+    # dist = pygeos.distance(
+    #     numpy.repeat(gdf.geometry.array.data.reshape(4000, 1), 4000, 1),
+    #     numpy.repeat(gdf.geometry.array.data.reshape(1, 4000), 4000, 0)
+    # )
+
     toc = timeit.default_timer()
     t_list[i] = round(toc - tic, 2)
     

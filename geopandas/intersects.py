@@ -1,6 +1,7 @@
 import os
 import timeit
 import pandas
+import numpy
 import geopandas
 import pandas as pd
 
@@ -12,12 +13,11 @@ polygon = geopandas.read_file(polygon_path)
 
 # this function is much faster than loop checking all points
 def intersects(points, polygon):
-    nrow = len(points)
-    rep = [polygon.iloc[0].repeat(nrow)] # replicate polygon geometry
-    df = pandas.concat(rep, ignore_index = True)
-    gdf = geopandas.GeoDataFrame(geometry = df, crs = polygon.crs)
-    x = points.intersects(gdf, align = False)
-    return(x)
+    hit = points.sindex.query(polygon.geometry.iloc[0], predicate="intersects")
+    out = numpy.zeros(shape=points.shape, dtype=numpy.bool_)
+    out[hit] = True
+    return out
+
 
 t_list = [None] * 10
 for i in range(10):

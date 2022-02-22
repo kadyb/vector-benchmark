@@ -1,6 +1,5 @@
 import os
 import timeit
-import random
 import geopandas
 import pandas as pd
 from shapely import geometry
@@ -10,17 +9,20 @@ vec = os.path.join(wd, "data", "polygon.gpkg")
 gdf = geopandas.read_file(vec)
 
 def sample(polygon, size):
+    count = 0
     points = []
     x_min, y_min, x_max, y_max = polygon.total_bounds
-    i = 0
-    while i < size:
-        x = random.uniform(x_min, x_max)
-        y = random.uniform(y_min, y_max)
-        point = geometry.Point(x, y)
-        if polygon.contains(point)[0]:
-            points.append(point)
-            i = i + 1
-    gdf = geopandas.GeoDataFrame(geometry = points, crs = polygon.crs)
+
+    while count < size:
+        pts = geopandas.GeoSeries.from_xy(
+            numpy.random.uniform(x_min, x_max, size),
+            numpy.random.uniform(y_min, y_max, size),
+        )
+        hits = pts[pts.sindex.query(polygon.geometry.iloc[0], predicate="contains")]
+        count += len(hits)
+        points.append(hits)
+
+    gdf = geopandas.GeoDataFrame(geometry=pd.concat(points)[:size], crs=polygon.crs)
     return gdf
 
 n = 100000

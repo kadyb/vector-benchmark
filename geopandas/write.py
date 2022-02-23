@@ -14,9 +14,7 @@ for i in range(10):
     tic = timeit.default_timer()
 
     tmp = tempfile.TemporaryFile(suffix = ".gpkg")
-    # it is obligatory to define the driver
-    # (implemented in geopandas 0.10)
-    gdf.to_file(tmp, driver = "GPKG")
+    gdf.to_file(tmp)
     # as with read, pyogrio is much faster in writing (10.5s vs 3.79s)
     # but the released version is not able to write to
     # virtual file, so this would fail

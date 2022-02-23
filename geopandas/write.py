@@ -13,8 +13,10 @@ t_list = [None] * 10
 for i in range(10):
     tic = timeit.default_timer()
 
-    tmp = tempfile.TemporaryFile(suffix = ".gpkg")
-    gdf.to_file(tmp)
+    # https://github.com/kadyb/vector-benchmark/issues/6
+    with tempfile.TemporaryDirectory() as tmpdir:
+        filename = os.path.join(tmpdir, "test_file.gpkg")
+        gdf.to_file(filename)
     # as with read, pyogrio is much faster in writing (10.5s vs 3.79s)
     # but the released version is not able to write to
     # virtual file, so this would fail

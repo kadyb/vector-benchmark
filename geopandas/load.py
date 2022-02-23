@@ -1,6 +1,7 @@
 import os
 import timeit
 import geopandas
+# import pyogrio
 import pandas as pd
 
 wd = os.getcwd()
@@ -12,6 +13,8 @@ for i in range(10):
 
     gdf = geopandas.read_file(vec)
 
+    # we are working on a new engine - pyogrio (3.02s vs 145ms)
+    # gdf = pyogrio.read_dataframe(vec)
     toc = timeit.default_timer()
     t_list[i] = round(toc - tic, 2)
     

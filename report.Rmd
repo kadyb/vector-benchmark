@@ -28,6 +28,7 @@ cat(paste("geos", packageVersion("geos")))
 # check it manually
 cat("Python 3.8.10", "\n")
 cat("geopandas 0.9.0", "\n")
+cat("pygeos 0.12.0")
 ```
 
 ```{r}
@@ -171,6 +172,14 @@ df_agg = aggregate(time ~ task + package, df, median)
 python = c("geopandas")
 df_agg$lang = ifelse(df_agg$package %in% python, "Python", "R")
 df_agg$lang = as.factor(df_agg$lang)
+
+# drop slower funs from same packages
+drop = df_agg$package %in% c("geos", "sf") & df_agg$task == "intersects"
+df_agg = df_agg[!drop, ]
+
+# return only first part of string
+pkg_name = strsplit(as.character(df_agg$package), "-")
+df_agg$package = sapply(pkg_name, "[[", 1)
 
 xlabels = c("Buffer", "Distance", "Intersects", "Load",
             "Sample", "Transform", "Write")

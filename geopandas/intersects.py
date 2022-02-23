@@ -13,11 +13,10 @@ polygon = geopandas.read_file(polygon_path)
 
 # this function is much faster than loop checking all points
 def intersects(points, polygon):
-    hit = points.sindex.query(polygon.geometry.iloc[0], predicate="intersects")
-    out = numpy.zeros(shape=points.shape, dtype=numpy.bool_)
+    hit = points.sindex.query(polygon.geometry.iloc[0], predicate = "intersects")
+    out = numpy.zeros(shape = points.shape, dtype = numpy.bool_)
     out[hit] = True
     return out
-
 
 t_list = [None] * 10
 for i in range(10):

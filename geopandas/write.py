@@ -3,7 +3,6 @@ import timeit
 import tempfile
 import geopandas
 import pandas as pd
-
 # import pyogrio
 
 wd = os.getcwd()
@@ -16,6 +15,7 @@ for i in range(10):
 
     tmp = tempfile.TemporaryFile(suffix = ".gpkg")
     # it is obligatory to define the driver
+    # (implemented in geopandas 0.10)
     gdf.to_file(tmp, driver = "GPKG")
     # as with read, pyogrio is much faster in writing (10.5s vs 3.79s)
     # but the released version is not able to write to

@@ -6,7 +6,7 @@ vec = read_sf("data/points.gpkg")
 t_vec = numeric(10)
 for (i in seq_len(10)) {
 
-  t = system.time(as.data.frame(as_s2_lnglat(as_s2_geography(vec))))
+  t = system.time(as_s2_geography(vec))
   t_vec[i] = t[["elapsed"]]
 
 }

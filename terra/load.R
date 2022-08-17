@@ -4,7 +4,7 @@ vec = "data/points.gpkg"
 t_vec = numeric(10)
 for (i in seq_len(10)) {
 
-  t = system.time(geom(vect(vec)))
+  t = system.time(vect(vec, proxy = FALSE))
   t_vec[i] = t[["elapsed"]]
 
 }

@@ -3,11 +3,13 @@ This repository contains a collection of vector processing benchmarks for Python
 The tests cover the most common operations such as loading and saving a geopackage file, sampling points in a polygon, creating buffers, transformating the coordinate system (CRS), calculating the distance between points, and intersecting geometries.
 
 Note that all operations were performed in the Cartesian coordinate system excluding [s2](https://github.com/r-spatial/s2) package, where calculations were performed on the sphere (this may affects the longer calculation times).
-For more information, see the [Spherical geometry in sf using s2geometry](https://r-spatial.github.io/sf/articles/sf7.html) article and [presentation](https://www.youtube.com/watch?v=zqRhF2XM1CE) at the FOSS4G 2021 conference.
+For more information, see the "[Spherical geometry in sf using s2geometry](https://r-spatial.github.io/sf/articles/sf7.html)" article and [presentation](https://www.youtube.com/watch?v=zqRhF2XM1CE) at the FOSS4G 2021 conference.
 
 It makes a huge difference to the operations performance in `{geopandas}` if the `{pygeos}` library is installed.
 Its absence significantly slows down data processing.
 `{pygeos}` will be used by default with version 2.0 of `{Shapely}`. 
+
+Note `{terra}` uses an external structure in C++ to store data, so it has better performance compared to other packages.
 
 <img src="comparison.png" width="100%"/>
 

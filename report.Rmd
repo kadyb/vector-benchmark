@@ -174,8 +174,6 @@ df_agg$lang = ifelse(df_agg$package %in% python, "Python", "R")
 df_agg$lang = as.factor(df_agg$lang)
 
 # drop slower funs from same packages
-drop = df_agg$package %in% c("geos", "sf") & df_agg$task == "intersects"
-df_agg = df_agg[!drop, ]
 df_agg = df_agg[!df_agg$package == "sf-transform", ]
 
 # return only first part of string

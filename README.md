@@ -9,8 +9,6 @@ It makes a huge difference to the operations performance in `{geopandas}` if the
 Its absence significantly slows down data processing.
 `{pygeos}` is installed by default with version 2.0 of `{Shapely}`.
 
-Note `{terra}` uses an external structure in C++ to store data, so it has better performance compared to other packages.
-
 <img src="comparison.png" width="100%"/>
 
 The detailed results are available at https://kadyb.github.io/vector-benchmark/report.html.

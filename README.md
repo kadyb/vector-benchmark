@@ -7,7 +7,7 @@ For more information, see the "[Spherical geometry in sf using s2geometry](https
 
 It makes a huge difference to the operations performance in `{geopandas}` if the `{pygeos}` library is installed.
 Its absence significantly slows down data processing.
-`{pygeos}` will be used by default with version 2.0 of `{Shapely}`. 
+`{pygeos}` is installed by default with version 2.0 of `{Shapely}`.
 
 Note `{terra}` uses an external structure in C++ to store data, so it has better performance compared to other packages.
 

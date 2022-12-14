@@ -27,8 +27,8 @@ cat(paste("geos", packageVersion("geos")))
 ```{r collapse=TRUE}
 # check it manually
 cat("Python 3.8.10", "\n")
-cat("geopandas 0.11.1", "\n")
-cat("pygeos 0.12.0")
+cat("geopandas 0.12.2", "\n")
+cat("pygeos 0.14.0")
 ```
 
 ```{r}

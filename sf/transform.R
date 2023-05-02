@@ -24,7 +24,7 @@ for (i in seq_len(10)) {
 
 }
 
-output = data.frame(task = "transform", package = "sf-transform", time = t_vec_1,
-                    task = "transform", package = "sf-project", time = t_vec_2)
+output = rbind(data.frame(task = "transform", package = "sf-transform", time = t_vec_1),
+               data.frame(task = "transform", package = "sf-project", time = t_vec_2))
 if (!dir.exists("results")) dir.create("results")
 write.csv2(output, "results/transform-sf.csv", row.names = FALSE)

@@ -1,0 +1,9 @@
+[deps]
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+Chairmarks = "0ca39b1e-fe0b-4e98-acfc-b1656634c4de"
+DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
+GMT = "5752ebe1-31b9-557e-87aa-f909b540aa54"
+GeoInterface = "cf35fbd7-0cd7-5166-be24-54bfbe79505f"
+GeometryOps = "3251bfac-6a57-4b6d-aa61-ac1fef2975ab"
+Proj = "c94c279d-25a6-4763-9509-64d165bea63e"
+SwarmMakie = "0b1c068e-6a84-4e66-8136-5c95cafa83ed"

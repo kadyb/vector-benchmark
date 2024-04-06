@@ -12,7 +12,7 @@ function write_benchmark_as_csv(benchmark::Chairmarks.Benchmark; package = "geom
     times = getproperty.(benchmark.samples, :time)
     # Now, we generate each row of the CSV file as a vector of strings.
     time_rows = map(times) do time
-        [package, task, replace(string(round(time, digits=4)), "." => ",")]
+        [task, package, replace(string(round(time, digits=4)), "." => ",")]
     end
     # Write the results to a CSV file
     header_vec = ["task", "package", "time"]

@@ -79,36 +79,37 @@ using SwarmMakie
 using CategoricalArrays
 
 ca = CategoricalArray(result_tasks)
+
+group_marker = [MarkerElement(; color = color_map[package], marker = marker_map[package], markersize = 12) for package in keys(marker_map)]
+names_marker = collect(keys(marker_map))
+lang_markers = ["R" => :utriangle, "Python" => :circle, "Julia" => :rect]
+group_package = [MarkerElement(; marker, markersize = 12) for (lang, marker) in lang_markers]
+names_package = first.(lang_markers)
+
 f, a, p = beeswarm(
     ca.refs, result_times;
     marker = getindex.((marker_map,), result_pkgs), 
     color = getindex.((color_map,), result_pkgs),
+    markersize = 10,
     axis = (;
         xticks = (1:length(ca.pool.levels), ca.pool.levels),
         xlabel = "Task",
         ylabel = "Median time (s)",
+        yscale = log10,
+        title = "Benchmark vector operations",
     )
 )
-
-
-
-Legend(
+leg = Legend(
     f[1, 2],
-
+    [group_marker, group_package],
+    [names_marker, names_package],
+    ["Package", "Language"],
+    tellheight = false,
+    tellwidth = true,
+    gridshalign = :left,
 )
+resize!(f, 600, 450)
+f
 
-aog_data = AlgebraOfGraphics.data(
-    (; 
-    tasks = result_tasks, times = result_times, 
-    markers = , 
-    colors = 
-)
-) * mapping(
-    :tasks, :times; 
-    marker = :markers => nonnumeric, 
-    color = :colors => nonnumeric
-) * visual(Beeswarm) |> draw
-
-
-
-beeswarm
+a.yscale = log10
+f

@@ -17,7 +17,9 @@ point_set = map(points_gpkg.geom) do row
 end
 polygon = GO.apply(p -> Point2d(GI.x(p), GI.y(p)), GI.PointTrait(), only(polygon_gpkg.geom))
 # Benchmark the reproject function
-# This uses the `Chairmarks.jl` package to benchmark the `GO.distance` function.
+# This uses the `Chairmarks.jl` package to benchmark the 
+# `GO.reproject` function, which calls the Proj C-API.
+# In future it will also support native Julia transformations.
 # The benchmark will run for 15 seconds.
 benchmark = @be GO.reproject($point_set, $(points_gpkg[1].proj4), $("EPSG:4326"); always_xy = false) seconds=15
 

@@ -28,7 +28,7 @@ done
 
 # run Julia benchmarks
 julia --project=./geometryops -e 'using Pkg; Pkg.instantiate()'
-for i in ${Python_packages[*]}
+for i in ${Julia_packages[*]}
 do
   for path in "${i}"/*.jl
   do

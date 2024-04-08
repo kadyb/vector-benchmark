@@ -38,7 +38,6 @@ for (idx, task) in enumerate(unique(first.(results)))
             xlabel = "Median time (s)",
         )
     )
-    display(f)
 end
 
 resize!(f, 800, 1500)
@@ -108,8 +107,5 @@ leg = Legend(
     tellwidth = true,
     gridshalign = :left,
 )
-resize!(f, 600, 450)
-f
-
-a.yscale = log10
+resize!(f, 650, 450)
 f

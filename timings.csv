@@ -1,6 +1,10 @@
 task,package,median
-buffer,geometryops,2.41
+buffer,geometryops,2.38
+distance,geometryops,0.04
+intersects,geometryops,0.01
 load,geometryops,0.2
+sample,geometryops,0.09
+transform,geometryops,0.05
 write,geometryops,3.53
 buffer,geopandas,6.09
 distance,geopandas,9.62
@@ -25,12 +29,8 @@ load,terra,0.34
 sample,terra,1.47
 transform,terra,0.37
 write,terra,2.53
-geometryops,distance,0.02
 distance,s2,10.29
 intersects,s2,0.37
 transform,s2,0.77
-geometryops,intersects,0.01
-geometryops,sample,0.09
-geometryops,transform,0.05
 transform,sf-project,0.05
 transform,sf-transform,0.5

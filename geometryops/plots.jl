@@ -1,4 +1,4 @@
-using CairoMakie, AlgebraOfGraphics, DelimitedFiles, Statistics
+using CairoMakie, DelimitedFiles, Statistics
 
 results_path = joinpath(dirname(@__DIR__), "results")
 results_files = readdir(results_path; join = false)
@@ -96,6 +96,11 @@ f, a, p = beeswarm(
         ylabel = "Median time (s)",
         yscale = log10,
         title = "Benchmark vector operations",
+        xgridvisible = false,
+        xminorgridvisible = true,
+        yminorgridvisible = true,
+        yminorticks = IntervalsBetween(5),
+        ygridcolor = RGBA{Float32}(0.0f0,0.0f0,0.0f0,0.05f0),
     )
 )
 leg = Legend(

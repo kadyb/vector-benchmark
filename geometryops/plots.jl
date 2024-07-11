@@ -56,6 +56,7 @@ language_marker_dict = Dict(
     ]
 )
 language_marker_dict["r"] = MakieTeX.SVGDocument(read(download("https://raw.githubusercontent.com/file-icons/icons/master/svg/R.svg"), String));
+language_marker_dict["python"] = MakieTeX.SVGDocument(read(download("https://raw.githubusercontent.com/file-icons/MFixx/master/svg/python.svg"), String));
 
 # create a map from package name to marker
 marker_map = Dict(

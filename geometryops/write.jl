@@ -10,10 +10,8 @@ data_path = joinpath(dirname(@__DIR__), "data")
 points_gpkg = GeoDataFrames.read(joinpath(data_path, "points.gpkg"))
 polygon_gpkg = GeoDataFrames.read(joinpath(data_path, "polygon.gpkg"))
 # Process it into a Julia form
-point_set = map(points_gpkg.geom) do row
-    Point2d(GI.x(row), GI.y(row))
-end
-polygon = GO.apply(p -> Point2d(GI.x(p), GI.y(p)), GI.PointTrait(), only(polygon_gpkg.geom))
+point_set = GO.tuples(points_gpkg.geom)
+polygon = GO.tuples(polygon_gpkg.geom)
 function _write(gdf)
     GeoDataFrames.write(joinpath(tempdir(), "temp.gpkg"), gdf; crs = GI.crs(first(gdf.geometry)))
 end

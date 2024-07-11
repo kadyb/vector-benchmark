@@ -45,44 +45,58 @@ f
 
 # summary plot
 
+
+using MakieTeX # to render SVG
+# get language logo SVGs
+language_logo_url(lang::String) = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/$(lowercase(lang))/$(lowercase(lang))-plain.svg"
+language_marker_dict = Dict(
+    [
+        key => MakieTeX.SVGDocument(read(download(language_logo_url(key)), String)) 
+        for key in ("C", "Go", "javascript", "julia", "python", "r")
+    ]
+)
+language_marker_dict["r"] = MakieTeX.SVGDocument(read(download("https://raw.githubusercontent.com/file-icons/icons/master/svg/R.svg"), String));
+
+# create a map from package name to marker
 marker_map = Dict(
     # R packages
-    "sf" => :utriangle,
-    "s2" => :utriangle,
-    "terra" => :utriangle,
-    "geos" => :utriangle,
+    "sf" => language_marker_dict["r"],
+    "s2" => language_marker_dict["r"],
+    "terra" => language_marker_dict["r"],
+    "geos" => language_marker_dict["r"],
     # Python package
-    "geopandas" => :circle,
+    "geopandas" => language_marker_dict["python"],
     # Julia package
-    "geometryops" => :rect,
+    "geometryops" => language_marker_dict["julia"],
 )
-
+# package name to color
 color_map = Dict(
     # R packages
-    "sf" => Makie.wong_colors()[1],
-    "s2" => Makie.wong_colors()[2],
-    "terra" => Makie.wong_colors()[3],
+    "sf" => Makie.wong_colors()[2],
+    "s2" => Makie.wong_colors()[6],
+    "terra" => Makie.wong_colors()[1],
     "geos" => Makie.wong_colors()[4],
     # Python package
     "geopandas" => Makie.wong_colors()[5],
     # Julia package
-    "geometryops" => Makie.wong_colors()[6],
+    "geometryops" => Makie.wong_colors()[3],
 )
 
 result_tasks = getindex.(results, 1) .|> string
 result_pkgs  = getindex.(results, 2) .|> string
 result_times = Statistics.median.(getindex.(results, 3))
 
-using SwarmMakie
+using SwarmMakie # for beeswarm plots and dodging
 
 using CategoricalArrays
+using Makie: RGBA
 
 ca = CategoricalArray(result_tasks)
 
 group_marker = [MarkerElement(; color = color_map[package], marker = marker_map[package], markersize = 12) for package in keys(marker_map)]
 names_marker = collect(keys(marker_map))
-lang_markers = ["R" => :utriangle, "Python" => :circle, "Julia" => :rect]
-group_package = [MarkerElement(; marker, markersize = 12) for (lang, marker) in lang_markers]
+lang_markers = ["R" => language_marker_dict["r"], "Python" => language_marker_dict["python"], "Julia" => language_marker_dict["julia"]]
+group_package = [MarkerElement(; marker, markersize = 12, color = :black) for (lang, marker) in lang_markers]
 names_package = first.(lang_markers)
 
 f, a, p = beeswarm(
@@ -101,7 +115,8 @@ f, a, p = beeswarm(
         yminorgridvisible = true,
         yminorticks = IntervalsBetween(5),
         ygridcolor = RGBA{Float32}(0.0f0,0.0f0,0.0f0,0.05f0),
-    )
+    ),
+    figure = (; backgroundcolor = RGBAf(1, 1, 1, 0))
 )
 leg = Legend(
     f[1, 2],
@@ -113,4 +128,9 @@ leg = Legend(
     gridshalign = :left,
 )
 resize!(f, 650, 450)
+a.backgroundcolor[] = RGBAf(1, 1, 1, 0)
+leg.backgroundcolor[] = RGBAf(1, 1, 1, 0)
+p.markersize[] = 13
 f
+
+

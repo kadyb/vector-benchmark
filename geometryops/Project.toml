@@ -1,9 +1,11 @@
 [deps]
 CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
 Chairmarks = "0ca39b1e-fe0b-4e98-acfc-b1656634c4de"
+DataAPI = "9a962f9c-6df0-11e9-0e5d-c546b8b5ee8a"
 DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
 GMT = "5752ebe1-31b9-557e-87aa-f909b540aa54"
 GeoDataFrames = "62cb38b5-d8d2-4862-a48e-6a340996859f"
+GeoFormatTypes = "68eda718-8dee-11e9-39e7-89f7f65f511f"
 GeoInterface = "cf35fbd7-0cd7-5166-be24-54bfbe79505f"
 GeometryOps = "3251bfac-6a57-4b6d-aa61-ac1fef2975ab"
 LibGEOS = "a90b1aa1-3769-5649-ba7e-abc5a9d163eb"
@@ -12,4 +14,4 @@ Proj = "c94c279d-25a6-4763-9509-64d165bea63e"
 SwarmMakie = "0b1c068e-6a84-4e66-8136-5c95cafa83ed"
 
 [compat]
-GeometryOps = "0.1.7"
+GeometryOps = "0.1.26"

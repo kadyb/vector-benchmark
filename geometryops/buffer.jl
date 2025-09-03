@@ -12,8 +12,8 @@ data_path = joinpath(dirname(@__DIR__), "data")
 points_gpkg = GeoDataFrames.read(joinpath(data_path, "points.gpkg"))
 polygon_gpkg = GeoDataFrames.read(joinpath(data_path, "polygon.gpkg"))
 # Process it into a Julia form
-point_set = GO.tuples(points_gpkg.geom)
-polygon = GO.tuples(only(polygon_gpkg.geom))
+point_set = GO.tuples(points_gpkg.geometry)
+polygon = GO.tuples(only(polygon_gpkg.geometry))
 
 # Benchmark the distance function
 # This uses the `Chairmarks.jl` package to benchmark the `GO.distance` function.

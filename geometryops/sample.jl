@@ -1,3 +1,4 @@
+import GeoDataFrames
 import GeometryOps as GO, GeoInterface as GI
 using CairoMakie
 import GMT # easiest package to use to load Geopackage files
@@ -10,8 +11,8 @@ data_path = joinpath(dirname(@__DIR__), "data")
 points_gpkg = GeoDataFrames.read(joinpath(data_path, "points.gpkg"))
 polygon_gpkg = GeoDataFrames.read(joinpath(data_path, "polygon.gpkg"))
 # Process it into a Julia form
-point_set = GO.tuples(points_gpkg.geom)
-polygon = GO.tuples(only(polygon_gpkg.geom))
+point_set = GO.tuples(points_gpkg.geometry)
+polygon = GO.tuples(only(polygon_gpkg.geometry))
 # Create a `sample` function in the vein of the Python function
 
 function _sample(polygon, size)
@@ -20,12 +21,12 @@ function _sample(polygon, size)
     ymin, ymax = ext.Y
 
     count = 0
-    points = Point2d[]
+    points = Tuple{Float32, Float32}[]
 
     while count < size
         x = xmin + (xmax - xmin) * rand()
         y = ymin + (ymax - ymin) * rand()
-        point = Point2d(x, y)
+        point = (x, y)
         if GO.contains(polygon, point)
             push!(points, point)
             count += 1

@@ -12,13 +12,13 @@ data_path = joinpath(dirname(@__DIR__), "data")
 points_gpkg = GeoDataFrames.read(joinpath(data_path, "points.gpkg"))
 polygon_gpkg = GeoDataFrames.read(joinpath(data_path, "polygon.gpkg"))
 # Process it into a Julia form
-point_set = GO.tuples(points_gpkg.geometry)
+point_set = GI.Point.(GO.tuples(points_gpkg.geometry); crs=GI.crs(points_gpkg))
 polygon = GO.tuples(only(polygon_gpkg.geometry))
 
 # Benchmark the distance function
 # This uses the `Chairmarks.jl` package to benchmark the `GO.distance` function.
 # The benchmark will run for 15 seconds.
-benchmark = @be GO.buffer.((GO.GEOS(),), point_set, 100) seconds=15
+benchmark = @be GO.buffer.((GO.GEOS((;quadsegs=30)),), point_set, 100) seconds=15
 
 # Write the results to a CSV file
 write_benchmark_as_csv(benchmark; task = "buffer")

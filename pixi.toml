@@ -1,0 +1,14 @@
+[workspace]
+authors = ["Maarten Pronk <git@evetion.nl>"]
+channels = ["conda-forge"]
+name = "vector-benchmark"
+platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+geopandas = ">=1.1.1,<2"
+pandas = ">=2.3.2,<3"
+numpy = ">=2.3.2,<3"
+pyogrio = ">=0.11.1,<0.12"

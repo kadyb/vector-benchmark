@@ -22,7 +22,7 @@ do
   for path in "${i}"/*
   do
     echo "$path"
-    python3 "$path"
+    pixi run python "$path"
   done
 done
 

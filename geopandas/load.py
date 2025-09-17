@@ -13,11 +13,14 @@ for i in range(10):
 
     gdf = geopandas.read_file(vec)
 
-    # we are working on a new engine - pyogrio (3.02s vs 145ms)
-    # gdf = pyogrio.read_dataframe(vec)
+    # if we have pyarrow in the environment, you can pass data using
+    # arrow stream - 0.163s vs 0.32s
+
+    # gdf = geopandas.read_file(vec, use_arrow=True)
+
     toc = timeit.default_timer()
     t_list[i] = round(toc - tic, 2)
-    
+
 df = {'task': ['load'] * 10, 'package': ['geopandas'] * 10, 'time': t_list}
 df = pd.DataFrame.from_dict(df)
 if not os.path.isdir('results'): os.mkdir('results')

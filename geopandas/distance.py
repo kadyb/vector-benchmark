@@ -1,8 +1,8 @@
 import os
 import timeit
 import geopandas
-import shapely
-import numpy as np
+# import shapely
+# import numpy as np
 import pandas as pd
 
 wd = os.getcwd()
@@ -14,16 +14,12 @@ t_list = [None] * 10
 for i in range(10):
     tic = timeit.default_timer()
 
-    dist = shapely.distance(
-        np.repeat(gdf.geometry.array.to_numpy().reshape(4000, 1), 4000, 1),
-        np.repeat(gdf.geometry.array.to_numpy().reshape(1, 4000), 4000, 0),
-    )
+    dist = gdf.geometry.apply(lambda f: gdf.distance(f))
 
-    # the same could be done with the following but NxN distance matrix
-    # shall be optimally computed using shapely. The time difference
-    # on M1 Air is 0.372 vs 0.488
-
-    # dist = gdf.geometry.apply(lambda f: gdf.distance(f))
+    # dist = shapely.distance(
+    #     np.repeat(gdf.geometry.array.to_numpy().reshape(4000, 1), 4000, 1),
+    #     np.repeat(gdf.geometry.array.to_numpy().reshape(1, 4000), 4000, 0),
+    # )
 
     toc = timeit.default_timer()
     t_list[i] = round(toc - tic, 2)

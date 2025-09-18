@@ -5,10 +5,6 @@ The tests cover the most common operations such as loading and saving a geopacka
 Note that all operations were performed in the Cartesian coordinate system excluding [s2](https://github.com/r-spatial/s2) package, where calculations were performed on the sphere (this may affects the longer calculation times).
 For more information, see the "[Spherical geometry in sf using s2geometry](https://r-spatial.github.io/sf/articles/sf7.html)" article and [presentation](https://www.youtube.com/watch?v=zqRhF2XM1CE) at the FOSS4G 2021 conference.
 
-It makes a huge difference to the operations performance in `{geopandas}` if the `{pygeos}` library is installed.
-Its absence significantly slows down data processing.
-`{pygeos}` is installed by default with version 2.0 of `{Shapely}`.
-
 <img src="comparison.png" width="100%"/>
 
 The detailed results are available at https://kadyb.github.io/vector-benchmark/report.html.
@@ -26,6 +22,9 @@ You may also be interested in the [raster processing benchmarks](https://github.
 - [terra](https://github.com/rspatial/terra)
 - [s2](https://github.com/r-spatial/s2)
 - [geos](https://github.com/paleolimbot/geos)
+
+**Julia**:
+- [GeometryOps.jl](https://github.com/JuliaGeo/GeometryOps.jl)
 
 ## Reproduction
 1. Generate the data from `data/` folder in R.
@@ -53,3 +52,4 @@ The dataset is synthetically generated and consists of 300,000 points in a plana
 - CPU: Intel Xeon CPU E5-2620 v2 @ 2.10GHz
 - RAM: 64 GB
 - OS: Pop!_OS 20.04 LTS
+

@@ -15,7 +15,7 @@ You may also be interested in the [raster processing benchmarks](https://github.
 
 ## Software
 **Python**:
-- [geopandas](https://github.com/geopandas/geopandas) (with [pygeos](https://pygeos.readthedocs.io/en/stable/))
+- [geopandas](https://github.com/geopandas/geopandas)
 
 **R**:
 - [sf](https://github.com/r-spatial/sf)
@@ -52,4 +52,5 @@ The dataset is synthetically generated and consists of 300,000 points in a plana
 - CPU: Intel Xeon CPU E5-2620 v2 @ 2.10GHz
 - RAM: 64 GB
 - OS: Pop!_OS 20.04 LTS
+
 

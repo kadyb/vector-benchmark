@@ -49,8 +49,6 @@ python3 geopandas/buffer.py
 The dataset is synthetically generated and consists of 300,000 points in a planar coordinate system.
 
 ## Hardware configuration
-- CPU: Intel Xeon CPU E5-2620 v2 @ 2.10GHz
+- CPU: AMD Ryzen 9 5900X @ 3.7 GHz
 - RAM: 64 GB
-- OS: Pop!_OS 20.04 LTS
-
-
+- OS: Ubuntu 22.04.5 LTS

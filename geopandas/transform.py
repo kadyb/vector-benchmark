@@ -14,7 +14,7 @@ for i in range(10):
     gdf_4326 = gdf.to_crs(4326)
 
     toc = timeit.default_timer()
-    t_list[i] = round(toc - tic, 2)
+    t_list[i] = round(toc - tic, 4)
     
 df = {'task': ['transform'] * 10, 'package': ['geopandas'] * 10, 'time': t_list}
 df = pd.DataFrame.from_dict(df)

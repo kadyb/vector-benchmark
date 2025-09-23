@@ -11,7 +11,7 @@ t_list = [None] * 10
 for i in range(10):
     tic = timeit.default_timer()
 
-    gdf = geopandas.read_file(vec)
+    gdf = geopandas.read_file(vec, engine = "pyogrio")
 
     # if we have pyarrow in the environment, you can pass data using
     # arrow stream - 0.163s vs 0.32s

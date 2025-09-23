@@ -15,7 +15,7 @@ for i in range(10):
     # https://github.com/kadyb/vector-benchmark/issues/6
     with tempfile.TemporaryDirectory() as tmpdir:
         filename = os.path.join(tmpdir, "test_file.gpkg")
-        gdf.to_file(filename)
+        gdf.to_file(filename, engine = "pyogrio")
 
         # if we have pyarrow in the environment, you can pass data using
         # arrow stream - 0.68s vs 0.758s

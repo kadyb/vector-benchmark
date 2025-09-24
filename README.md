@@ -5,7 +5,7 @@ The tests cover the most common operations such as loading and saving a geopacka
 Note that all operations were performed in the Cartesian coordinate system excluding [s2](https://github.com/r-spatial/s2) package, where calculations were performed on the sphere (this may affects the longer calculation times).
 For more information, see the "[Spherical geometry in sf using s2geometry](https://r-spatial.github.io/sf/articles/sf7.html)" article and [presentation](https://www.youtube.com/watch?v=zqRhF2XM1CE) at the FOSS4G 2021 conference.
 
-<img src="comparison.png" width="100%"/>
+<img src="comparison.png" width="100%"/> 
 
 The detailed results are available at https://kadyb.github.io/vector-benchmark/report.html.
 
@@ -52,3 +52,4 @@ The dataset is synthetically generated and consists of 500,000 points in a plana
 - CPU: AMD Ryzen 9 5900X @ 3.7 GHz
 - RAM: 64 GB
 - OS: Ubuntu 22.04.5 LTS
+

@@ -1,7 +1,7 @@
 library(terra)
 
 vec = vect("data/polygon.gpkg")
-n = 100000
+n = 300000
 
 t_vec = numeric(10)
 for (i in seq_len(10)) {

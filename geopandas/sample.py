@@ -8,7 +8,7 @@ wd = os.getcwd()
 vec = os.path.join(wd, "data", "polygon.gpkg")
 gdf = geopandas.read_file(vec)
 
-n = 100000
+n = 300000
 t_list = [None] * 10
 for i in range(10):
     tic = timeit.default_timer()

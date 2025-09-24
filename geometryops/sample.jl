@@ -40,7 +40,7 @@ end
 # Benchmark the `_sample` function
 # This uses the `Chairmarks.jl` package to benchmark the `GO.distance` function.
 # The benchmark will run for 15 seconds.
-benchmark = @be _sample($polygon, 100_000) seconds=15
+benchmark = @be _sample($polygon, 300_000) seconds=15
 
 # Write the results to a CSV file
 write_benchmark_as_csv(benchmark; task = "sample")

@@ -46,7 +46,7 @@ python3 geopandas/buffer.py
 ```
 
 ## Dataset
-The dataset is synthetically generated and consists of 300,000 points in a planar coordinate system.
+The dataset is synthetically generated and consists of 500,000 points in a planar coordinate system.
 
 ## Hardware configuration
 - CPU: AMD Ryzen 9 5900X @ 3.7 GHz

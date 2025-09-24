@@ -9,7 +9,7 @@ For more information, see the "[Spherical geometry in sf using s2geometry](https
 
 The detailed results are available at https://kadyb.github.io/vector-benchmark/report.html.
 
-For high-performance data frames processing in R, check [data.table](https://grantmcdermott.com/fast-geospatial-datatable-geos/) and [collapse](https://sebkrantz.github.io/collapse/articles/collapse_and_sf.html).
+For high-performance data frames processing in R, check [data.table](https://grantmcdermott.com/posts/fast-geospatial-datatable-geos/) and [collapse](https://sebkrantz.github.io/collapse/articles/collapse_and_sf.html).
 
 You may also be interested in the [raster processing benchmarks](https://github.com/kadyb/raster-benchmark).
 
@@ -52,4 +52,5 @@ The dataset is synthetically generated and consists of 500,000 points in a plana
 - CPU: AMD Ryzen 9 5900X @ 3.7 GHz
 - RAM: 64 GB
 - OS: Ubuntu 22.04.5 LTS
+
 

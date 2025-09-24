@@ -9,10 +9,10 @@ include("utils.jl")
 data_path = joinpath(dirname(@__DIR__), "data")
 points_gpkg = GeoDataFrames.read(joinpath(data_path, "points.gpkg"))
 polygon_gpkg = GeoDataFrames.read(joinpath(data_path, "polygon.gpkg"))
-# Process it into a Julia form.  
-# In this particular case, we only compute 
+# Process it into a Julia form.
+# In this particular case, we only compute
 # distance between the first 4000 points - otherwise it would get excessive.
-point_set = GO.tuples(points_gpkg.geometry[1:4000])
+point_set = GO.tuples(points_gpkg.geometry[1:5000])
 polygon = GO.tuples(only(polygon_gpkg.geometry))
 
 # Benchmark the distance function

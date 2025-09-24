@@ -2,7 +2,7 @@ library(sf)
 library(geos)
 
 vec = read_sf("data/points.gpkg")
-vec = vec[1:4000, ]
+vec = vec[1:5000, ]
 vec = as_geos_geometry(vec)
 
 t_vec = numeric(10)

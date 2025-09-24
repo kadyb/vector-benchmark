@@ -17,8 +17,8 @@ polygon = GO.tuples(only(polygon_gpkg.geometry))
 
 # Benchmark the distance function
 # This uses the `Chairmarks.jl` package to benchmark the `GO.distance` function.
-# The benchmark will run for 15 seconds.
-benchmark = @be GO.buffer.((GO.GEOS((;quadsegs=30)),), point_set, 100) seconds=15
+# The benchmark will run for 60 seconds.
+benchmark = @be GO.buffer.((GO.GEOS((;quadsegs=30)),), point_set, 100) seconds=60
 
 # Write the results to a CSV file
 write_benchmark_as_csv(benchmark; task = "buffer")

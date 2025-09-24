@@ -44,7 +44,7 @@ df = do.call(rbind, lapply(files, read.csv2,
 ```
 
 ## Sampling points
-**100 000 points**
+**300 000 points**
 
 ```{r sample}
 df_agg = df[df$task == "sample", ]
@@ -153,7 +153,7 @@ ggplot(df_agg, aes(x = reorder(package, -median), y = median)) +
 ```
 
 ## Distance
-**4000 points**
+**5000 points**
 
 ```{r distance}
 df_agg = df[df$task == "distance", ]
@@ -172,7 +172,7 @@ ggplot(df_agg, aes(x = reorder(package, -median), y = median)) +
 ```
 
 
-```{r final-plot, eval=FALSE}
+```{r final-plot}
 df_agg = aggregate(time ~ task + package, df, median)
 
 # language as a new variable

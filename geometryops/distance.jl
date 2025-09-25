@@ -18,7 +18,7 @@ polygon = GO.tuples(only(polygon_gpkg.geometry))
 # Benchmark the distance function
 # This uses the `Chairmarks.jl` package to benchmark the `GO.distance` function.
 # The benchmark will run for 15 seconds.
-distance_benchmark = @be [GO.distance(point1, point2) for point1 in $point_set, point2 in $point_set] seconds=15 gc=false
+distance_benchmark = @be [GO.distance(point1, point2) for point1 in $point_set, point2 in $point_set] seconds=15
 
 # Write the results to a CSV file
 write_benchmark_as_csv(distance_benchmark; task = "distance")

@@ -1,7 +1,7 @@
 import GeometryOps as GO, GeoInterface as GI
 using CairoMakie
 import GeoDataFrames
-import GMT # easiest package to use to load Geopackage files
+import GMT
 using Chairmarks
 import GeoFormatTypes as GFT
 using Proj # activate GeometryOps reprojection
@@ -18,7 +18,7 @@ point_set = GO.tuples(points_gpkg.geometry)
 polygon = GO.tuples(polygon_gpkg.geometry)
 polygon = GO.apply(p -> (GI.x(p), GI.y(p)), GI.PointTrait(), only(polygon_gpkg.geometry))
 # Benchmark the reproject function
-# This uses the `Chairmarks.jl` package to benchmark the 
+# This uses the `Chairmarks.jl` package to benchmark the
 # `GO.reproject` function, which calls the Proj C-API.
 # In future it will also support native Julia transformations.
 # The benchmark will run for 15 seconds.

@@ -1,7 +1,7 @@
 import GeoDataFrames
 import GeometryOps as GO, GeoInterface as GI
 using CairoMakie
-import GMT # easiest package to use to load Geopackage files
+import GMT
 using Chairmarks
 using Proj # activate GeometryOps reprojection
 include("utils.jl") # include saving utilities as common code
@@ -13,8 +13,8 @@ polygon_gpkg = GeoDataFrames.read(joinpath(data_path, "polygon.gpkg"))
 # Process it into a Julia form
 point_set = GO.tuples(points_gpkg.geometry)
 polygon = GO.tuples(only(polygon_gpkg.geometry))
-# Create a `sample` function in the vein of the Python function
 
+# Create a `sample` function in the vein of the Python function
 function _sample(polygon, size)
     ext = GI.extent(polygon)
     xmin, xmax = ext.X
@@ -38,7 +38,7 @@ function _sample(polygon, size)
 end
 
 # Benchmark the `_sample` function
-# This uses the `Chairmarks.jl` package to benchmark the `GO.distance` function.
+# This uses the `Chairmarks.jl` package to benchmark the `_sample` function.
 # The benchmark will run for 15 seconds.
 benchmark = @be _sample($polygon, 300_000) seconds=15
 

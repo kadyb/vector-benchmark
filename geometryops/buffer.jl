@@ -15,8 +15,8 @@ polygon_gpkg = GeoDataFrames.read(joinpath(data_path, "polygon.gpkg"))
 point_set = GI.Point.(GO.tuples(points_gpkg.geometry); crs=GI.crs(points_gpkg))
 polygon = GO.tuples(only(polygon_gpkg.geometry))
 
-# Benchmark the distance function
-# This uses the `Chairmarks.jl` package to benchmark the `GO.distance` function.
+# Benchmark the buffer function
+# This uses the `Chairmarks.jl` package to benchmark the `GO.buffer` function.
 # The benchmark will run for 60 seconds.
 benchmark = @be GO.buffer.((GO.GEOS((;quadsegs=30)),), point_set, 100) seconds=60
 

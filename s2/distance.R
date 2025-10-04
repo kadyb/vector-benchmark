@@ -1,4 +1,5 @@
 # skip this test because it is quite slow
+# (it's not actually Euclidean distance too)
 if (FALSE) {
 
   library(s2)
